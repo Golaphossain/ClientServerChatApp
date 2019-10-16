@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical"
+    android:background="@drawable/client_background_gradient"
+    tools:context=".MainActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textStyle="normal" />
+
+            <LinearLayout
+                android:id="@+id/loginpanel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="visible"
+                android:gravity="center">
+
+                <!--        <EditText-->
+                <!--            android:id="@+id/username"-->
+                <!--            android:layout_width="match_parent"-->
+                <!--            android:layout_height="wrap_content"-->
+                <!--            android:hint="User name" />-->
+                <EditText
+                    android:id="@+id/username"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:ems="10"
+                    android:paddingBottom="10dp"
+                    android:layout_marginBottom="20sp"
+                    android:hint="Enter Your Name"
+                    android:inputType="textPersonName"
+                    tools:layout_editor_absoluteX="21dp"
+                    tools:layout_editor_absoluteY="26dp"/>
+
+                <!--        <EditText-->
+                <!--            android:id="@+id/address"-->
+                <!--            android:layout_width="match_parent"-->
+                <!--            android:layout_height="wrap_content"-->
+                <!--            android:hint="dstAddress" />-->
+                <EditText
+                    android:id="@+id/address"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:ems="10"
+                    android:paddingBottom="10dp"
+                    android:layout_marginBottom="20sp"
+                    android:hint="Enter Server IP"
+                    android:inputType="textPersonName"
+                    tools:layout_editor_absoluteX="21dp"
+                    tools:layout_editor_absoluteY="26dp" />
+                <TextView
+                    android:id="@+id/port"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <!--        <Button-->
+                <!--            android:id="@+id/connect"-->
+                <!--            android:layout_width="match_parent"-->
+                <!--            android:layout_height="wrap_content"-->
+                <!--            android:text="Connect..." />-->
+                <Button
+                    android:id="@+id/connect"
+                    android:layout_width="131dp"
+                    android:layout_height="58dp"
+                    android:text="LOGIN"
+                    tools:layout_editor_absoluteX="132dp"
+                    tools:layout_editor_absoluteY="231dp"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:background="#4CAF50"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/chatpanel"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:visibility="gone" >
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:textColor="#FFFFFF"
+                        android:id="@+id/chatmsg"
+                        android:padding="10dp"
+                        android:background="@drawable/background_style_1"
+                        android:layout_margin="5dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <TextView
+                        android:textColor="#FFFFFF"
+                        android:id="@+id/chatmsg2"
+                        android:layout_margin="5dp"
+                        android:padding="10dp"
+                        android:background="@drawable/background_style_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                </LinearLayout>
+
+
+
+                <EditText
+                    android:id="@+id/say"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="write message" />
+
+                <Button
+                    android:id="@+id/send"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Send" />
+
+<!--                <Button-->
+<!--                    android:id="@+id/disconnect"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:text="Disconnect" />-->
+
+
+            </LinearLayout>
+        </RelativeLayout>
+
+
+    </ScrollView>
+
+
+</LinearLayout>
