@@ -14,7 +14,7 @@ step1: First of all user should install the server app in his device.
 Step2: After install this app user can see Device IP address in this site which is used for client user to join the chatroom.
 
 Contributions:
-1st member completed the Client part and 2nd member completed the Server part. Golap
+1st member completed the Client part and 2nd member completed the Server part. 
 
 
 
