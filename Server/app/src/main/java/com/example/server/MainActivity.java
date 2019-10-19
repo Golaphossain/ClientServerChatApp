@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView infoIp, infoPort, chatMsg;
     Spinner spUsers;
-    ArrayAdapter<ChatClient> spUsersAdapter;
+    ArrayAdapter<ChatClient>spUsersAdapter;
     Button btnSentTo;
 
     String msgLog = "";
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     List<ChatClient> userList;
 
     ServerSocket serverSocket;
-    @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         btnSentTo = (Button)findViewById(R.id.sentto);
         btnSentTo.setOnClickListener(btnSentToOnClickListener);
 
-        infoIp.setText(getIpAddress());
+        infoIp.setText(getdeviceIpAddress());
 
         ServerThread serverThread = new ServerThread();
         serverThread.start();
@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             ChatClient client = (ChatClient)spUsers.getSelectedItem();
             if(client != null){
-                String Msg = "Ok your connection established.\n";
+                String Msg = "Ok your connection is established.\n";
                 client.chatThread.sendMsg(Msg);
                 msgLog += "- checking message to " + client.name + "\n";
                 chatMsg.setText(msgLog);
@@ -97,25 +97,15 @@ public class MainActivity extends AppCompatActivity {
 
             try {
                 serverSocket = new ServerSocket(SocketServerPORT);
-//                MainActivity.this.runOnUiThread(new Runnable() {
-//
-//                    @Override
-//                    public void run() {
-////                        infoPort.setText("I'm waiting here: "
-////                                + serverSocket.getLocalPort());
-//                    }
-//                });
 
                 while(true) {
                     socket = serverSocket.accept();
                     ChatClient client = new ChatClient();
                     userList.add(client);
-                    ConnectionThread connectionThread = new ConnectionThread(client, socket);
+                    ConnectionThread connectionThread = new ConnectionThread(client,socket);
                     connectionThread.start();
-
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
+                    runOnUiThread(new Runnable(){
+                        public void run(){
                             spUsersAdapter.notifyDataSetChanged();
                         }
                     });
@@ -169,19 +159,16 @@ public class MainActivity extends AppCompatActivity {
                         connectClient.socket.getInetAddress() +
                         ":"+"\n";
                 MainActivity.this.runOnUiThread(new Runnable() {
-
-                    @Override
-                    public void run() {
+                    public void run(){
                         chatMsg.setText(msgLog);
                     }
                 });
-
                 dataOutputStream.writeUTF("Welcome " + username + "\n");
                 dataOutputStream.flush();
 
                 broadcastMsg(username + " join chatroom.\n");
 
-                while (true) {
+                while (true){
                     if (dataInputStream.available() > 0) {
                         String newMsg = dataInputStream.readUTF();
 
@@ -206,23 +193,22 @@ public class MainActivity extends AppCompatActivity {
 
                 }
 
-            } catch (IOException e) {
+            }
+            catch (IOException e) {
                 e.printStackTrace();
-            } finally {
-                if (dataInputStream != null) {
+            } finally{
+                if (dataInputStream!= null) {
                     try {
                         dataInputStream.close();
-                    } catch (IOException e) {
-                        // TODO Auto-generated catch block
+
+                    } catch (IOException e){
                         e.printStackTrace();
                     }
                 }
-
-                if (dataOutputStream != null) {
+                if (dataOutputStream != null){
                     try {
                         dataOutputStream.close();
-                    } catch (IOException e) {
-                        // TODO Auto-generated catch block
+                    }catch(IOException e) {
                         e.printStackTrace();
                     }
                 }
@@ -274,7 +260,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private String getIpAddress() {
+    private String getdeviceIpAddress() {
         String ip = "";
         try {
             Enumeration<NetworkInterface>enumNetworkInterfaces = NetworkInterface
